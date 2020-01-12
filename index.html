@@ -6,27 +6,112 @@
   <title>Anish Vaidya</title>
   <link rel="shortcut icon" type="image/png" href="assets/favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" /> -->
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous" type="text/css">
   <!-- remember, jQuery is completely optional -->
   <!-- <script type='text/javascript' src='js/jquery-1.11.1.min.js'></script> -->
   <script type="text/javascript" src="js/jquery.particleground.js"></script>
   <script type="text/javascript" src="js/demo.js"></script>
+  <!-- <script type="text/javascript" src="type.js"></script> -->
+  <style type="text/css">
+
+    body {
+      font-family: Arial;
+      /* font-size: 50px; */
+    }
+    
+    #container {
+      margin: 25px 0 0 0;
+      text-align: center;
+    }
+    
+    #text {
+      display: inline-block;
+      font-size: 50px;
+      color: #d6e22f;
+      border-right: 3px solid #d6e22f;
+    }
+    
+    </style>
 </head>
 
 <body>
 
 <div id="particles">
   <div id="intro">
-      <h2 style="font-family: 'Syncopate', sans-serif; font-weight: 10;">Anish Amul Vaidya&nbsp<a href="deedy.pdf" style="color: white;"><img src="https://png.icons8.com/office/40/000000/open-resume.png" height="35" width="35"></a></h2>
-        <hr style="width: 50%; background-color: #E83951; border-color: #E83951;">
-    <a href="https://www.linkedin.com/in/#/" style="color: white;"><i class="fab fa-linkedin" style="font-size: 2em;"></i></a>
+    <h2 style="font-family: 'Syncopate', sans-serif; font-weight: 10;">Hello, I'm&nbsp<h2 style="font-family: 'Syncopate', sans-serif; font-weight: 10;">Anish Amul Vaidya&nbsp<a href="my_resume.pdf" style="color: white;"><img src="https://png.icons8.com/office/40/000000/open-resume.png" height="35" width="35"></a></h2></h2>
+        
+        <div id="container">
+          <div id="text"></div>
+        </div>
+        
+        <script type="text/javascript">
+        
+        // List of sentences
+        var _CONTENT = [ "a coder", "a learner", "an ML enthusiast", "a gymnast" ];
+        
+        // Current sentence being processed
+        var _PART = 0;
+        
+        // Character number of the current sentence being processed 
+        var _PART_INDEX = 0;
+        
+        // Holds the handle returned from setInterval
+        var _INTERVAL_VAL;
+        
+        // Element that holds the text
+        var _ELEMENT = document.querySelector("#text");
+        
+        // Implements typing effect
+        function Type() { 
+          var text =  _CONTENT[_PART].substring(0, _PART_INDEX + 1);
+          _ELEMENT.innerHTML = text;
+          _PART_INDEX++;
+        
+          // If full sentence has been displayed then start to delete the sentence after some time
+          if(text === _CONTENT[_PART]) {
+            clearInterval(_INTERVAL_VAL);
+            setTimeout(function() {
+              _INTERVAL_VAL = setInterval(Delete, 50);
+            }, 1000);
+          }
+        }
+        
+        // Implements deleting effect
+        function Delete() {
+          var text =  _CONTENT[_PART].substring(0, _PART_INDEX - 1);
+          _ELEMENT.innerHTML = text;
+          _PART_INDEX--;
+        
+          // If sentence has been deleted then start to display the next sentence
+          if(text === '') {
+            clearInterval(_INTERVAL_VAL);
+        
+            // If last sentence then display the first one, else move to the next
+            if(_PART == (_CONTENT.length - 1))
+              _PART = 0;
+            else
+              _PART++;
+            _PART_INDEX = 0;
+        
+            // Start to display the next sentence after some time
+            setTimeout(function() {
+              _INTERVAL_VAL = setInterval(Type, 150);
+            }, 200);
+          }
+        }
+        
+        // Start the typing effect on load
+        _INTERVAL_VAL = setInterval(Type, 100);
+        
+        </script>
+    <hr style="width: 50%; background-color: #E83951; border-color: #E83951;">  
+    <a href="https://www.linkedin.com/in/anish-amul-vaidya/" style="color: white;"><i class="fab fa-linkedin" style="font-size: 2em;"></i></a>
     &nbsp
-    <a href="https://www.facebook.com/#/" style="color: white;"><i class="fab fa-facebook" style="font-size: 2em;"></i></a>
+    <a href="https://github.com/anishvaidya" style="color: white;"><i class="fab fa-github" style="font-size: 2em;"></i></a>
     &nbsp
-    <a href="https://github.com/#/" style="color: white;"><i class="fab fa-github" style="font-size: 2em;"></i></a>
-    &nbsp
-    <a href="https://medium.com/@#/" style="color: white;"><i class="fab fa-medium" style="font-size: 2em;"></i></a>
+    <a href="https://www.instagram.com/anish_vaidya/" style="color: white;"><i class="fab fa-instagram" style="font-size: 2em;"></i></a>
   </div>
 </div>
 
